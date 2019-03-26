@@ -1,4 +1,7 @@
 /.tmp
 /.vscode
+/app
 /build
 /node_modules
+/uploads/*
+!/uploads/.gitkeep
