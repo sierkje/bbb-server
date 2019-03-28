@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "required": ["allowInProductionMode", "webServer", "graphQL", "fileUploads"],
+  "properties": {
+    "allowInProductionMode": {
+      "description": "If set to FALSE these settings are ignored in PRODUCTION mode.",
+      "type": "boolean"
+    },
+    "webServer": {
+      "description": "Settings for the GraphQL webserver.",
+      "type": "object",
+      "required": ["useHttps", "port"],
+      "properties": {
+        "siteName": {
+          "description": "Name of the website.",
+          "type": "string"
+        },
+        "useHttps": {
+          "description": "Whether the server serves over HTTPS or HTTP.",
+          "type": "boolean"
+        },
+        "hostname": {
+          "description": "The hostname of the webserver.",
+          "type": "string"
+        },
+        "port": {
+          "description": "The port of the webserver.",
+          "type": "integer"
+        }
+      }
+    },
+    "graphQL": {
+      "description": "Settings for the GraphQL server.",
+      "type": "object",
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "description": "Whether the GraphQL endpoint is enabled.",
+          "type": "boolean"
+        },
+        "path": {
+          "description": "Path for the GraphQL endpoint.",
+          "type": "string"
+        },
+        "playground": {
+          "description": "GraphQL playground setting overrides.",
+          "type": "object",
+          "required": ["enabled"],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "options": {
+              "type": "object",
+              "required": [],
+              "properties": {}
+            }
+          },
+          "if": {
+            "properties": {
+              "enabled": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "required": ["options"]
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "enabled": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "required": ["path", "playground"]
+      }
+    },
+    "fileUploads": {
+      "description": "Settings related to file uploads.",
+      "type": "object",
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "description": "Whether file uploads are enabled.",
+          "type": "boolean"
+        },
+        "path": {
+          "description": "Overrides the path which the uploaded files will be served from. Defaults to '/assets'",
+          "type": "string"
+        }
+      },
+      "if": {
+        "properties": {
+          "enabled": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "required": ["path"]
+      }
+    }
+  }
+}
