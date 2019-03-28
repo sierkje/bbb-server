@@ -1,0 +1,22 @@
+{
+  "$schema": "./settings.schema.json",
+  "allowInProductionMode": false,
+  "webServer": {
+    "siteName": "Big Betty Bookmobile",
+    "useHttps": false,
+    "hostname": "localhost",
+    "port": 9090
+  },
+  "graphQL": {
+    "enabled": true,
+    "path": "/graphql",
+    "playground": {
+      "enabled": true,
+      "options": {}
+    }
+  },
+  "fileUploads": {
+    "enabled": true,
+    "path": "/files"
+  }
+}
