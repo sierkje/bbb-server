@@ -1,7 +1,23 @@
-/.tmp
-/.vscode
-/app
-/build
 /node_modules
-/uploads/*
-!/uploads/.gitkeep
+
+# Folder for storing temporary files.
+/.tmp
+
+# Folder for compiled server code.
+/build
+
+# Default app folder, allows adding the app's build folder with Docker.
+/app
+
+# Default uploads folder, allows adding
+/uploads/
+
+# Custom settings and .env files.
+.env
+/settings/*
+!/settings/example.env
+!/settings/README.md
+!/settings/settings.development.json
+!/settings/settings.schema.json
+
+/.vscode
